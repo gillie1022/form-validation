@@ -47,9 +47,24 @@ function validateStartDate() {
   }
 }
 
+function validateDays() {
+  let days = document.querySelector("#days");
+  let daysValue = days.value;
+  let daysField = days.parentElement;
+
+  if (daysValue !== "") {
+    daysField.classList.remove("input-invalid");
+    daysField.classList.add("input-valid");
+  } else {
+    daysField.classList.remove("input-valid");
+    daysField.classList.add("input-invalid");
+  }
+}
+
 form.addEventListener("submit", function (event) {
   event.preventDefault();
   validateName();
   validateCar();
-  validateStartDate()
+  validateStartDate();
+  validateDays();
 });

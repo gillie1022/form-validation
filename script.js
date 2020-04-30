@@ -33,9 +33,23 @@ function validateCar() {
     carField.classList.add("input-invalid");
   }
 }
+function validateStartDate() {
+  let startDate = document.querySelector("#start-date");
+  let startDateValue = startDate.value;
+  let startDateField = startDate.parentElement;
+
+  if (startDateValue !== "") {
+    startDateField.classList.remove("input-invalid");
+    startDateField.classList.add("input-valid");
+  } else {
+    startDateField.classList.remove("input-valid");
+    startDateField.classList.add("input-invalid");
+  }
+}
 
 form.addEventListener("submit", function (event) {
   event.preventDefault();
   validateName();
-  validatecar();
+  validateCar();
+  validateStartDate()
 });

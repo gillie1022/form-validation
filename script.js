@@ -73,7 +73,19 @@ function validateCreditCard() {
     creditCardField.classList.add("input-invalid");
   }
 }
+function validateCvv() {
+  let cvvInput = document.querySelector("#cvv");
+  let cvvValue = cvvInput.value;
+  let cvvField = cvvInput.parentElement;
 
+  if (cvvValue !== "") {
+    cvvField.classList.remove("input-invalid");
+    cvvField.classList.add("input-valid");
+  } else {
+    cvvField.classList.remove("input-valid");
+    cvvField.classList.add("input-invalid");
+  }
+}
 form.addEventListener("submit", function (event) {
   event.preventDefault();
   validateName();
@@ -81,4 +93,5 @@ form.addEventListener("submit", function (event) {
   validateStartDate();
   validateDays();
   validateCreditCard();
+  validateCvv();
 });

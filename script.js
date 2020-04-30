@@ -15,7 +15,6 @@ function validateName() {
     nameField.classList.add("input-invalid");
   }
 }
-
 function validateCar() {
   let carYear = document.querySelector("#car-year");
   let carYearValue = carYear.value;
@@ -46,7 +45,6 @@ function validateStartDate() {
     startDateField.classList.add("input-invalid");
   }
 }
-
 function validateDays() {
   let days = document.querySelector("#days");
   let daysValue = days.value;
@@ -86,6 +84,20 @@ function validateCvv() {
     cvvField.classList.add("input-invalid");
   }
 }
+function validateExpiration() {
+  let expirationInput = document.querySelector("#expiration");
+  let expirationValue = expirationInput.value;
+  let expirationField = expirationInput.parentElement;
+
+  if (expirationValue !== "") {
+    expirationField.classList.remove("input-invalid");
+    expirationField.classList.add("input-valid");
+  } else {
+    expirationField.classList.remove("input-valid");
+    expirationField.classList.add("input-invalid");
+  }
+}
+
 form.addEventListener("submit", function (event) {
   event.preventDefault();
   validateName();
@@ -94,4 +106,5 @@ form.addEventListener("submit", function (event) {
   validateDays();
   validateCreditCard();
   validateCvv();
+  validateExpiration();
 });

@@ -2,12 +2,6 @@ console.log("Add validation!");
 
 let form = document.querySelector("#parking-form");
 
-form.addEventListener("submit", function (event) {
-  event.preventDefault();
-  validateName()
-  
-});
-
 function validateName() {
   let nameInput = document.querySelector("#name");
   let nameValue = nameInput.value;
@@ -21,3 +15,27 @@ function validateName() {
     nameField.classList.add("input-invalid");
   }
 }
+
+function validateCar() {
+  let carYear = document.querySelector("#car-year");
+  let carYearValue = carYear.value;
+  let carMake = document.querySelector("#car-make");
+  let carMakeValue = carMake.value;
+  let carModel = document.querySelector("#car-model");
+  let carModelValue = carModel.value;
+  let carField = document.querySelector("#car-field");
+
+  if (carYearValue !== "" && carMakeValue !== "" && carModelValue !== "") {
+    carField.classList.remove("input-invalid");
+    carField.classList.add("input-valid");
+  } else {
+    carField.classList.remove("input-valid");
+    carField.classList.add("input-invalid");
+  }
+}
+
+form.addEventListener("submit", function (event) {
+  event.preventDefault();
+  validateName();
+  validatecar();
+});

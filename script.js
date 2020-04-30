@@ -60,6 +60,19 @@ function validateDays() {
     daysField.classList.add("input-invalid");
   }
 }
+function validateCreditCard() {
+  let creditCard = document.querySelector("#credit-card");
+  let creditCardValue = creditCard.value;
+  let creditCardField = creditCard.parentElement;
+
+  if (creditCardValue !== "") {
+    creditCardField.classList.remove("input-invalid");
+    creditCardField.classList.add("input-valid");
+  } else {
+    creditCardField.classList.remove("input-valid");
+    creditCardField.classList.add("input-invalid");
+  }
+}
 
 form.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -67,4 +80,5 @@ form.addEventListener("submit", function (event) {
   validateCar();
   validateStartDate();
   validateDays();
+  validateCreditCard();
 });

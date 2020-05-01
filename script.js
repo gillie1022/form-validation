@@ -18,6 +18,7 @@ document
 let startDateLabel = document.querySelector("#start-date-label");
 let days = document.querySelector("#days");
 let daysField = days.parentElement;
+days.setAttribute("type", "number");
 document.getElementsByTagName("label")[3].setAttribute("id", "days-label");
 let daysLabel = document.querySelector("#days-label");
 let creditCard = document.querySelector("#credit-card");
@@ -221,14 +222,22 @@ function validateStartDate() {
 }
 function validateDays() {
   let daysValue = days.value;
-  if (daysValue !== "") {
-    daysField.classList.remove("input-invalid");
-    daysField.classList.add("input-valid");
-    daysLabel.textContent = "Number of days";
-  } else {
+  if (daysValue > 30) {
+    daysField.classList.remove("input-valid");
+    daysField.classList.add("input-invalid");
+    daysLabel.textContent = "Maximum number of days is 30!";
+  } else if (daysValue === "") {
     daysField.classList.remove("input-valid");
     daysField.classList.add("input-invalid");
     daysLabel.textContent = "Number of days is required!";
+  }else if (daysValue < 1) {
+    daysField.classList.remove("input-valid");
+    daysField.classList.add("input-invalid");
+    daysLabel.textContent = "Minimum number of days is 1!";
+  }  else {
+    daysField.classList.remove("input-invalid");
+    daysField.classList.add("input-valid");
+    daysLabel.textContent = "Number of days";
   }
 }
 function validateCreditCard() {

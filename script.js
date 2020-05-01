@@ -29,6 +29,7 @@ document
 let creditCardLabel = document.querySelector("#credit-card-label");
 let cvvInput = document.querySelector("#cvv");
 let cvvField = cvvInput.parentElement;
+cvvInput.setAttribute("type", "number");
 document.getElementsByTagName("label")[5].setAttribute("id", "cvv-label");
 let cvvLabel = document.querySelector("#cvv-label");
 let expirationInput = document.querySelector("#expiration");
@@ -230,11 +231,11 @@ function validateDays() {
     daysField.classList.remove("input-valid");
     daysField.classList.add("input-invalid");
     daysLabel.textContent = "Number of days is required!";
-  }else if (daysValue < 1) {
+  } else if (daysValue < 1) {
     daysField.classList.remove("input-valid");
     daysField.classList.add("input-invalid");
     daysLabel.textContent = "Minimum number of days is 1!";
-  }  else {
+  } else {
     daysField.classList.remove("input-invalid");
     daysField.classList.add("input-valid");
     daysLabel.textContent = "Number of days";
@@ -254,15 +255,17 @@ function validateCreditCard() {
 }
 function validateCvv() {
   let cvvValue = cvvInput.value;
-  if (cvvValue !== "") {
-    cvvField.classList.remove("input-invalid");
-    cvvField.classList.add("input-valid");
-    cvvLabel.textContent = "CVV";
-  } else {
+  if (cvvValue === "") {
     cvvField.classList.remove("input-valid");
     cvvField.classList.add("input-invalid");
-    cvvLabel.textContent = "CVV is required!";
-  }
+    cvvLabel.textContent = "CVV is required";
+  } else if (cvvValue < 100 || cvvValue > 999) {
+    cvvField.classList.remove("input-valid");
+    cvvField.classList.add("input-invalid");
+    cvvLabel.textContent = "CVV must be 3 digits!";
+  } else {cvvField.classList.remove("input-invalid");
+  cvvField.classList.add("input-valid");
+  cvvLabel.textContent = "CVV";}
 }
 function validateExpiration() {
   let expirationValue = expirationInput.value;

@@ -1,5 +1,3 @@
-console.log("Add validation!");
-
 let form = document.querySelector("#parking-form");
 let nameInput = document.querySelector("#name");
 let nameField = nameInput.parentElement;
@@ -64,10 +62,33 @@ function validateCar() {
     carField.classList.remove("input-invalid");
     carField.classList.add("input-valid");
     carLabel.textContent = "Car";
-  } else if (carYearValue < 1900) {
+  } else if (
+    carYearValue == "" &&
+    carMakeValue !== "" &&
+    carModelValue !== ""){  
     carField.classList.remove("input-valid");
     carField.classList.add("input-invalid");
-    carLabel.textContent = "Year must be a between 1900 and 2020!";
+    carLabel.textContent = "Year is required!";}
+  
+  // add year and model are required
+  // add year and make are required
+  //  add 
+    //  add make is required
+  // add model is required
+  // add make and model are required
+
+
+  
+  
+  
+  else if (carYearValue < 1900) {
+    carField.classList.remove("input-valid");
+    carField.classList.add("input-invalid");
+    carLabel.textContent = "Year must be after 1900!";
+  } else if (carYearValue > 2020) {
+    carField.classList.remove("input-valid");
+    carField.classList.add("input-invalid");
+    carLabel.textContent = "Year must be before 2021!";
   } else {
     carField.classList.remove("input-valid");
     carField.classList.add("input-invalid");

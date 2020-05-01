@@ -63,38 +63,150 @@ function validateCar() {
     carField.classList.add("input-valid");
     carLabel.textContent = "Car";
   } else if (
-    carYearValue == "" &&
-    carMakeValue !== "" &&
-    carModelValue !== ""){  
+    carYearValue === "" &&
+    carMakeValue === "" &&
+    carModelValue === ""
+  ) {
     carField.classList.remove("input-valid");
     carField.classList.add("input-invalid");
-    carLabel.textContent = "Year is required!";}
-  
-  // add year and model are required
-  // add year and make are required
-  //  add 
-    //  add make is required
-  // add model is required
-  // add make and model are required
-
-
-  
-  
-  
-  else if (carYearValue < 1900) {
+    carLabel.textContent = "Year, Make, and Model are required!";
+  } else if (
+    carYearValue === "" &&
+    carMakeValue === "" &&
+    carModelValue !== ""
+  ) {
+    carField.classList.remove("input-valid");
+    carField.classList.add("input-invalid");
+    carLabel.textContent = "Year and Make are required!";
+  } else if (
+    carYearValue === "" &&
+    carMakeValue !== "" &&
+    carModelValue === ""
+  ) {
+    carField.classList.remove("input-valid");
+    carField.classList.add("input-invalid");
+    carLabel.textContent = "Year and Model are required!";
+  } else if (
+    carYearValue > 1900 &&
+    carYearValue < 2021 &&
+    carMakeValue === "" &&
+    carModelValue === ""
+  ) {
+    carField.classList.remove("input-valid");
+    carField.classList.add("input-invalid");
+    carLabel.textContent = "Make and Model are required!";
+  } else if (
+    carYearValue < 1900 &&
+    carMakeValue === "" &&
+    carModelValue === ""
+  ) {
+    carField.classList.remove("input-valid");
+    carField.classList.add("input-invalid");
+    carLabel.textContent =
+      "Year must be after 1900 and Make and Model are required!";
+  } else if (
+    carYearValue > 2020 &&
+    carMakeValue === "" &&
+    carModelValue === ""
+  ) {
+    carField.classList.remove("input-valid");
+    carField.classList.add("input-invalid");
+    carLabel.textContent =
+      "Year must be before 2021 and Make and Model are required!";
+  } else if (
+    carYearValue < 1900 &&
+    carMakeValue === "" &&
+    carModelValue !== ""
+  ) {
+    carField.classList.remove("input-valid");
+    carField.classList.add("input-invalid");
+    carLabel.textContent = "Year must be after 1900 and Make is required!";
+  } else if (
+    carYearValue < 1900 &&
+    carMakeValue !== "" &&
+    carModelValue === ""
+  ) {
+    carField.classList.remove("input-valid");
+    carField.classList.add("input-invalid");
+    carLabel.textContent = "Year must be after 1900 and Model is required!";
+  } else if (
+    carYearValue > 2020 &&
+    carMakeValue === "" &&
+    carModelValue !== ""
+  ) {
+    carField.classList.remove("input-valid");
+    carField.classList.add("input-invalid");
+    carLabel.textContent = "Year must be before 2021 and Make is required!";
+  } else if (
+    carYearValue > 2020 &&
+    carMakeValue !== "" &&
+    carModelValue === ""
+  ) {
+    carField.classList.remove("input-valid");
+    carField.classList.add("input-invalid");
+    carLabel.textContent = "Year must be before 2021 and Model is required!";
+  } else if (
+    carYearValue > 1900 &&
+    carYearValue < 2021 &&
+    carMakeValue === "" &&
+    carModelValue === ""
+  ) {
+    carField.classList.remove("input-valid");
+    carField.classList.add("input-invalid");
+    carLabel.textContent = "Make and Model are required!";
+  } else if (
+    carYearValue < 1900 &&
+    carMakeValue === "" &&
+    carModelValue !== ""
+  ) {
+    carField.classList.remove("input-valid");
+    carField.classList.add("input-invalid");
+    carLabel.textContent = "Year must be after 1900 and Make is required!";
+  } else if (
+    carYearValue === "" &&
+    carMakeValue !== "" &&
+    carModelValue !== ""
+  ) {
+    carField.classList.remove("input-valid");
+    carField.classList.add("input-invalid");
+    carLabel.textContent = "Year is required!";
+  } else if (
+    carYearValue < 1900 &&
+    carMakeValue !== "" &&
+    carModelValue !== ""
+  ) {
     carField.classList.remove("input-valid");
     carField.classList.add("input-invalid");
     carLabel.textContent = "Year must be after 1900!";
-  } else if (carYearValue > 2020) {
+  } else if (
+    carYearValue > 2020 &&
+    carMakeValue !== "" &&
+    carModelValue !== ""
+  ) {
     carField.classList.remove("input-valid");
     carField.classList.add("input-invalid");
-    carLabel.textContent = "Year must be before 2021!";
-  } else {
+    carLabel.textContent = "Year must be before 2020!";
+  } else if (
+    carYearValue > 1900 &&
+    carYearValue < 2021 &&
+    carMakeValue === "" &&
+    carModelValue !== ""
+  ) {
     carField.classList.remove("input-valid");
     carField.classList.add("input-invalid");
-    carLabel.textContent = "Car is required!";
+    carLabel.textContent = "Make is required!";
+  } else if (
+    carYearValue > 1900 &&
+    carYearValue < 2021 &&
+    carMakeValue !== "" &&
+    carModelValue === ""
+  ) {
+    carField.classList.remove("input-valid");
+    carField.classList.add("input-invalid");
+    carLabel.textContent = "Model is required!";
   }
 }
+
 function validateStartDate() {
   let startDateValue = startDate.value;
   if (startDateValue !== "") {

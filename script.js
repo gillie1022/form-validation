@@ -137,3 +137,12 @@ form.addEventListener("submit", function (event) {
   validateCvv();
   validateExpiration();
 });
+
+// create seperate functions for car year
+
+  // create validateCarYear
+    // type must be a number
+    // number must be > 1900
+    // number must be < current year + 1
+
+

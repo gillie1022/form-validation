@@ -23,10 +23,11 @@ document.getElementsByTagName("label")[3].setAttribute("id", "days-label");
 let daysLabel = document.querySelector("#days-label");
 let creditCard = document.querySelector("#credit-card");
 let creditCardField = creditCard.parentElement;
+creditCard.setAttribute("type", "number");
 document
   .getElementsByTagName("label")[4]
   .setAttribute("id", "credit-card-label");
-let creditCardLabel = document.querySelector("#credit-card-label");
+  let creditCardLabel = document.querySelector("#credit-card-label");
 let cvvInput = document.querySelector("#cvv");
 let cvvField = cvvInput.parentElement;
 cvvInput.setAttribute("type", "number");
@@ -243,14 +244,18 @@ function validateDays() {
 }
 function validateCreditCard() {
   let creditCardValue = creditCard.value;
-  if (creditCardValue !== "") {
-    creditCardField.classList.remove("input-invalid");
-    creditCardField.classList.add("input-valid");
-    creditCardLabel.textContent = "Credit Card";
-  } else {
+  if (creditCardValue === "") {
     creditCardField.classList.remove("input-valid");
     creditCardField.classList.add("input-invalid");
     creditCardLabel.textContent = "Credit Card is required!";
+  } else if(creditCardValue < 1000000000000000 || creditCardValue > 9999999999999999 ){
+    creditCardField.classList.remove("input-valid");
+    creditCardField.classList.add("input-invalid");
+    creditCardLabel.textContent = "Credit Card must be 16 digits!";
+  }else{creditCardField.classList.remove("input-invalid");
+  creditCardField.classList.add("input-valid");
+  creditCardLabel.textContent = "Credit Card";
+
   }
 }
 function validateCvv() {
@@ -263,9 +268,11 @@ function validateCvv() {
     cvvField.classList.remove("input-valid");
     cvvField.classList.add("input-invalid");
     cvvLabel.textContent = "CVV must be 3 digits!";
-  } else {cvvField.classList.remove("input-invalid");
-  cvvField.classList.add("input-valid");
-  cvvLabel.textContent = "CVV";}
+  } else {
+    cvvField.classList.remove("input-invalid");
+    cvvField.classList.add("input-valid");
+    cvvLabel.textContent = "CVV";
+  }
 }
 function validateExpiration() {
   let expirationValue = expirationInput.value;
@@ -280,6 +287,28 @@ function validateExpiration() {
   }
 }
 
+
+// need to add in this functionality for credit card varification.
+function validateCardNumber(number) {
+  var regex = new RegExp("^[0-9]{16}$");
+  if (!regex.test(number)) return false;
+
+  return luhnCheck(number);
+}
+function luhnCheck(val) {
+  var sum = 0;
+  for (var i = 0; i < val.length; i++) {
+    var intVal = parseInt(val.substr(i, 1));
+    if (i % 2 == 0) {
+      intVal *= 2;
+      if (intVal > 9) {
+        intVal = 1 + (intVal % 10);
+      }
+    }
+    sum += intVal;
+  }
+  return sum % 10 == 0;
+}
 form.addEventListener("submit", function (event) {
   event.preventDefault();
   validateName();

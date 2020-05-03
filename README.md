@@ -10,11 +10,11 @@ If you look at the [Shoelace docs for form validation](https://shoelace.style/do
 
 Do this project in steps. Each step adds another layer of difficulty. Make sure and commit your code after each step, if not more often. Do not worry if you cannot complete all the steps!
 
-### Step 1
+<!-- ### Step 1 -->
 
 Each field is required. If there is no user input in that field, mark it as invalid.
 
-### Step 2
+<!-- ### Step 2 -->
 
 Add a message to each invalid field, saying "<field> is required," where <field> is the label or other descriptive text for the field. You can add this message as a div inside the div with the class "input-field".
 
@@ -24,13 +24,13 @@ This message should go away if the field is later marked as valid. This message 
 
 Add the following validations:
 
-* Car year must be a number.
-* Car year must be after 1900.
-* Car year cannot be in the future.
+<!-- * Car year must be a number. -->
+<!-- * Car year must be after 1900. -->
+<!-- * Car year cannot be in the future. -->
 * Date parking must be in the future.
-* Number of days must be a number.
-* Number of days must be between 1 and 30.
-* CVV must be a three-digit number.
+<!-- * Number of days must be a number. -->
+<!-- * Number of days must be between 1 and 30. -->
+<!-- * CVV must be a three-digit number. -->
 
 ### Step 4
 

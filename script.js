@@ -27,7 +27,7 @@ creditCard.setAttribute("type", "number");
 document
   .getElementsByTagName("label")[4]
   .setAttribute("id", "credit-card-label");
-  let creditCardLabel = document.querySelector("#credit-card-label");
+let creditCardLabel = document.querySelector("#credit-card-label");
 let cvvInput = document.querySelector("#cvv");
 let cvvField = cvvInput.parentElement;
 cvvInput.setAttribute("type", "number");
@@ -209,6 +209,20 @@ function validateCar() {
     carLabel.textContent = "Model is required!";
   }
 }
+// function startDateInFuture() {
+//   let startDateValue = startDate.value;
+//   let present = new Date();
+//   let enteredDate = new Date(startDateValue);
+//   if (enteredDate.getFullYear() > present.getFullYear()) {
+//     return true;
+//   } else if (enteredDate.getMonth() > present.getMonth()) {
+//     return true;
+//   } else if (enteredDate.getDate() > present.getDate()) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// }
 
 function validateStartDate() {
   let startDateValue = startDate.value;
@@ -248,14 +262,17 @@ function validateCreditCard() {
     creditCardField.classList.remove("input-valid");
     creditCardField.classList.add("input-invalid");
     creditCardLabel.textContent = "Credit Card is required!";
-  } else if(creditCardValue < 1000000000000000 || creditCardValue > 9999999999999999 ){
+  } else if (
+    creditCardValue < 1000000000000000 ||
+    creditCardValue > 9999999999999999
+  ) {
     creditCardField.classList.remove("input-valid");
     creditCardField.classList.add("input-invalid");
     creditCardLabel.textContent = "Credit Card must be 16 digits!";
-  }else{creditCardField.classList.remove("input-invalid");
-  creditCardField.classList.add("input-valid");
-  creditCardLabel.textContent = "Credit Card";
-
+  } else {
+    creditCardField.classList.remove("input-invalid");
+    creditCardField.classList.add("input-valid");
+    creditCardLabel.textContent = "Credit Card";
   }
 }
 function validateCvv() {
@@ -286,7 +303,6 @@ function validateExpiration() {
     expirationLabel.textContent = "Expiration is required!";
   }
 }
-
 
 // need to add in this functionality for credit card varification.
 function validateCardNumber(number) {

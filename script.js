@@ -209,27 +209,19 @@ function validateCar() {
     carLabel.textContent = "Model is required!";
   }
 }
-// function startDateInFuture() {
-//   let startDateValue = startDate.value;
-//   let present = new Date();
-//   let enteredDate = new Date(startDateValue);
-//   if (enteredDate.getFullYear() > present.getFullYear()) {
-//     return true;
-//   } else if (enteredDate.getMonth() > present.getMonth()) {
-//     return true;
-//   } else if (enteredDate.getDate() > present.getDate()) {
-//     return true;
-//   } else {
-//     return false;
-//   }
-// }
 
 function validateStartDate() {
   let startDateValue = startDate.value;
-  if (startDateValue !== "") {
+  let present = Date.now();
+  let startDateNumValue = startDate.valueAsNumber;
+  if (present < startDateNumValue) {
     startDateField.classList.remove("input-invalid");
     startDateField.classList.add("input-valid");
     startDateLabel.textContent = "Date parking";
+  } else if (present > startDateNumValue) {
+    startDateField.classList.remove("input-valid");
+    startDateField.classList.add("input-invalid");
+    startDateLabel.textContent = "Date parking must be in the future!";
   } else {
     startDateField.classList.remove("input-valid");
     startDateField.classList.add("input-invalid");

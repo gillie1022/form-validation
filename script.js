@@ -262,7 +262,7 @@ function validateCreditCard() {
   } else if (validateCardNumber(creditCardValue) === false) {
     creditCardField.classList.remove("input-valid");
     creditCardField.classList.add("input-invalid");
-    creditCardLabel.textContent = "Please input valid Credit Card number!";
+    creditCardLabel.textContent = "Please input a valid Credit Card number!";
   } else if (
     creditCardValue < 1000000000000000 ||
     creditCardValue > 9999999999999999
@@ -314,13 +314,19 @@ function validateCvv() {
 }
 function validateExpiration() {
   let expirationValue = expirationInput.valueAsDate;
-  let expirationMonth = expirationValue.getMonth();
-  let expirationYear = expirationValue.getFullYear();
-  if (expirationValue === "") {
+  if (expirationValue !== null) {
+    validateExpirationInFuture();
+  } else {
     expirationField.classList.remove("input-valid");
     expirationField.classList.add("input-invalid");
     expirationLabel.textContent = "Expiration is required!";
-  } else if (presentYear > expirationYear) {
+  }
+}
+function validateExpirationInFuture() {
+  let expirationValue = expirationInput.valueAsDate;
+  let expirationMonth = expirationValue.getMonth();
+  let expirationYear = expirationValue.getFullYear();
+  if (presentYear > expirationYear) {
     expirationField.classList.remove("input-valid");
     expirationField.classList.add("input-invalid");
     expirationLabel.textContent = "Expiration Year must be in the future!";
@@ -335,7 +341,6 @@ function validateExpiration() {
   }
 }
 
-
 form.addEventListener("submit", function (event) {
   event.preventDefault();
   validateName();
@@ -346,3 +351,14 @@ form.addEventListener("submit", function (event) {
   validateCvv();
   validateExpiration();
 });
+
+let costPerDay = [
+  { day: "Monday", cost: 5 },
+  { day: "Tuesday", cost: 5 },
+  { day: "Wednesday", cost: 5 },
+  { day: "Thursday", cost: 5 },
+  { day: "Friday",cost: 5 },
+  { day: "Saturday",cost: 7 },
+  { day: "Sunday",cost: 7 },
+];
+let costArray = [5,5,5,5,5,7,7]

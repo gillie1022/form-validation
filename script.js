@@ -1,4 +1,8 @@
 let form = document.querySelector("#parking-form");
+let presentNum = Date.now();
+let presentDate = new Date();
+let presentYear = presentDate.getFullYear();
+let presentMonth = presentDate.getMonth();
 let nameInput = document.querySelector("#name");
 let nameField = nameInput.parentElement;
 document.getElementsByTagName("label")[0].setAttribute("id", "name-label");
@@ -11,6 +15,7 @@ let carField = document.querySelector("#car-field");
 document.getElementsByTagName("label")[1].setAttribute("id", "car-label");
 let carLabel = document.querySelector("#car-label");
 let startDate = document.querySelector("#start-date");
+let startDateValue = startDate.value;
 let startDateField = startDate.parentElement;
 document
   .getElementsByTagName("label")[2]
@@ -34,6 +39,7 @@ cvvInput.setAttribute("type", "number");
 document.getElementsByTagName("label")[5].setAttribute("id", "cvv-label");
 let cvvLabel = document.querySelector("#cvv-label");
 let expirationInput = document.querySelector("#expiration");
+expirationInput.setAttribute("type", "month");
 let expirationField = expirationInput.parentElement;
 document
   .getElementsByTagName("label")[6]
@@ -211,14 +217,12 @@ function validateCar() {
 }
 
 function validateStartDate() {
-  let startDateValue = startDate.value;
-  let present = Date.now();
   let startDateNumValue = startDate.valueAsNumber;
-  if (present < startDateNumValue) {
+  if (presentNum < startDateNumValue) {
     startDateField.classList.remove("input-invalid");
     startDateField.classList.add("input-valid");
     startDateLabel.textContent = "Date parking";
-  } else if (present > startDateNumValue) {
+  } else if (presentNum > startDateNumValue) {
     startDateField.classList.remove("input-valid");
     startDateField.classList.add("input-invalid");
     startDateLabel.textContent = "Date parking must be in the future!";
@@ -249,11 +253,16 @@ function validateDays() {
   }
 }
 function validateCreditCard() {
+  validateCardNumber();
   let creditCardValue = creditCard.value;
   if (creditCardValue === "") {
     creditCardField.classList.remove("input-valid");
     creditCardField.classList.add("input-invalid");
     creditCardLabel.textContent = "Credit Card is required!";
+  } else if (validateCardNumber(creditCardValue) === false) {
+    creditCardField.classList.remove("input-valid");
+    creditCardField.classList.add("input-invalid");
+    creditCardLabel.textContent = "Please input valid Credit Card number!";
   } else if (
     creditCardValue < 1000000000000000 ||
     creditCardValue > 9999999999999999
@@ -267,36 +276,6 @@ function validateCreditCard() {
     creditCardLabel.textContent = "Credit Card";
   }
 }
-function validateCvv() {
-  let cvvValue = cvvInput.value;
-  if (cvvValue === "") {
-    cvvField.classList.remove("input-valid");
-    cvvField.classList.add("input-invalid");
-    cvvLabel.textContent = "CVV is required";
-  } else if (cvvValue < 100 || cvvValue > 999) {
-    cvvField.classList.remove("input-valid");
-    cvvField.classList.add("input-invalid");
-    cvvLabel.textContent = "CVV must be 3 digits!";
-  } else {
-    cvvField.classList.remove("input-invalid");
-    cvvField.classList.add("input-valid");
-    cvvLabel.textContent = "CVV";
-  }
-}
-function validateExpiration() {
-  let expirationValue = expirationInput.value;
-  if (expirationValue !== "") {
-    expirationField.classList.remove("input-invalid");
-    expirationField.classList.add("input-valid");
-    expirationLabel.textContent = "Expiration";
-  } else {
-    expirationField.classList.remove("input-valid");
-    expirationField.classList.add("input-invalid");
-    expirationLabel.textContent = "Expiration is required!";
-  }
-}
-
-// need to add in this functionality for credit card varification.
 function validateCardNumber(number) {
   var regex = new RegExp("^[0-9]{16}$");
   if (!regex.test(number)) return false;
@@ -317,6 +296,46 @@ function luhnCheck(val) {
   }
   return sum % 10 == 0;
 }
+function validateCvv() {
+  let cvvValue = cvvInput.value;
+  if (cvvValue === "") {
+    cvvField.classList.remove("input-valid");
+    cvvField.classList.add("input-invalid");
+    cvvLabel.textContent = "CVV is required";
+  } else if (cvvValue < 100 || cvvValue > 999) {
+    cvvField.classList.remove("input-valid");
+    cvvField.classList.add("input-invalid");
+    cvvLabel.textContent = "CVV must be 3 digits!";
+  } else {
+    cvvField.classList.remove("input-invalid");
+    cvvField.classList.add("input-valid");
+    cvvLabel.textContent = "CVV";
+  }
+}
+function validateExpiration() {
+  let expirationValue = expirationInput.valueAsDate;
+  let expirationMonth = expirationValue.getMonth();
+  let expirationYear = expirationValue.getFullYear();
+  if (expirationValue === "") {
+    expirationField.classList.remove("input-valid");
+    expirationField.classList.add("input-invalid");
+    expirationLabel.textContent = "Expiration is required!";
+  } else if (presentYear > expirationYear) {
+    expirationField.classList.remove("input-valid");
+    expirationField.classList.add("input-invalid");
+    expirationLabel.textContent = "Expiration Year must be in the future!";
+  } else if (presentMonth > expirationMonth) {
+    expirationField.classList.remove("input-valid");
+    expirationField.classList.add("input-invalid");
+    expirationLabel.textContent = "Expiration must be in the future!";
+  } else {
+    expirationField.classList.remove("input-invalid");
+    expirationField.classList.add("input-valid");
+    expirationLabel.textContent = "Expiration";
+  }
+}
+
+
 form.addEventListener("submit", function (event) {
   event.preventDefault();
   validateName();

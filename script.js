@@ -341,6 +341,28 @@ function validateExpirationInFuture() {
   }
 }
 
+//  Does not work!
+
+// function totalCost(){
+//   if ((nameField.classList.contains("input-valid") === true)&&
+//       (carField.classList.contains("input-valid")===true)&&
+//       (startDateField.classList.contains("input-valid") === true) &&
+//       (daysField.classList.contains("input-valid") === true) &&
+//       (creditCardField.classList.contains("input-valid") === true) &&
+//       (cvvField.classList.contains("input-valid") === true) &&
+//       (expirationField.classList.contains("input-valid") === true))  {
+//         let parkDate = new Date(startDate.valueAsDate);
+//         let dayOfWeek = parkDate.getDay();
+//         let total = 0;
+//         for (let i = 0; i < days.value; i++){
+//           if(dayOfWeek == 5
+//           else{ total += 5};
+//           if (dayOfWeek > 6){dayOfWeek=0}
+//           console.log(total)
+//         }
+//       }}
+
+
 form.addEventListener("submit", function (event) {
   event.preventDefault();
   validateName();
@@ -350,15 +372,5 @@ form.addEventListener("submit", function (event) {
   validateCreditCard();
   validateCvv();
   validateExpiration();
+  // totalCost()
 });
-
-let costPerDay = [
-  { day: "Monday", cost: 5 },
-  { day: "Tuesday", cost: 5 },
-  { day: "Wednesday", cost: 5 },
-  { day: "Thursday", cost: 5 },
-  { day: "Friday",cost: 5 },
-  { day: "Saturday",cost: 7 },
-  { day: "Sunday",cost: 7 },
-];
-let costArray = [5,5,5,5,5,7,7]

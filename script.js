@@ -262,14 +262,7 @@ function validateCreditCard() {
     creditCardField.classList.remove("input-valid");
     creditCardField.classList.add("input-invalid");
     creditCardLabel.textContent = "Please input a valid Credit Card number!";
-  } else if (
-    creditCardValue < 1000000000000000 ||
-    creditCardValue > 9999999999999999
-  ) {
-    creditCardField.classList.remove("input-valid");
-    creditCardField.classList.add("input-invalid");
-    creditCardLabel.textContent = "Credit Card must be 16 digits!";
-  } else {
+  }  else {
     creditCardField.classList.remove("input-invalid");
     creditCardField.classList.add("input-valid");
     creditCardLabel.textContent = "Credit Card";

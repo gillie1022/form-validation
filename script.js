@@ -215,7 +215,6 @@ function validateCar() {
     carLabel.textContent = "Model is required!";
   }
 }
-
 function validateStartDate() {
   let startDateNumValue = startDate.valueAsNumber;
   if (presentNum < startDateNumValue) {
@@ -340,28 +339,28 @@ function validateExpirationInFuture() {
     expirationLabel.textContent = "Expiration";
   }
 }
-
-//  Does not work!
-
-// function totalCost(){
-//   if ((nameField.classList.contains("input-valid") === true)&&
-//       (carField.classList.contains("input-valid")===true)&&
-//       (startDateField.classList.contains("input-valid") === true) &&
-//       (daysField.classList.contains("input-valid") === true) &&
-//       (creditCardField.classList.contains("input-valid") === true) &&
-//       (cvvField.classList.contains("input-valid") === true) &&
-//       (expirationField.classList.contains("input-valid") === true))  {
-//         let parkDate = new Date(startDate.valueAsDate);
-//         let dayOfWeek = parkDate.getDay();
-//         let total = 0;
-//         for (let i = 0; i < days.value; i++){
-//           if(dayOfWeek == 5
-//           else{ total += 5};
-//           if (dayOfWeek > 6){dayOfWeek=0}
-//           console.log(total)
-//         }
-//       }}
-
+function totalCost() {
+  if (
+    nameField.classList.contains("input-valid") === true &&
+    carField.classList.contains("input-valid") === true &&
+    startDateField.classList.contains("input-valid") === true &&
+    daysField.classList.contains("input-valid") === true &&
+    creditCardField.classList.contains("input-valid") === true &&
+    cvvField.classList.contains("input-valid") === true &&
+    expirationField.classList.contains("input-valid") === true
+  ) {
+    let edate = new Date(document.querySelector("#start-date").valueAsNumber);
+    let dow = edate.getDay();
+    let price = 0;
+    for (let n = 0; n < document.querySelector("#days").value; n++) {
+      if (dow == 5 || dow == 6) price += 7;
+      else price += 5;
+      dow++;
+      if (dow > 6) dow = 0;
+    }
+    document.querySelector("#total").textContent = "Total: $" + price + ".00";
+  } else {document.querySelector("#total").textContent = "";}
+}
 
 form.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -372,5 +371,5 @@ form.addEventListener("submit", function (event) {
   validateCreditCard();
   validateCvv();
   validateExpiration();
-  // totalCost()
+  totalCost();
 });

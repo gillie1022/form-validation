@@ -262,7 +262,7 @@ function validateCreditCard() {
     creditCardField.classList.remove("input-valid");
     creditCardField.classList.add("input-invalid");
     creditCardLabel.textContent = "Please input a valid Credit Card number!";
-  }  else {
+  } else {
     creditCardField.classList.remove("input-invalid");
     creditCardField.classList.add("input-valid");
     creditCardLabel.textContent = "Credit Card";
